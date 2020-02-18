@@ -22,3 +22,14 @@ router.post("/api/workouts:id", (req, res) => {
         });
 });
 
+router.put("/api/workouts", ({ body }, res) => {
+    workout.create(body)
+        .then(dbTransaction => {
+            res.json(dbTransaction);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
+
+
