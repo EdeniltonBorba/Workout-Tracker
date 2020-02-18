@@ -3,7 +3,7 @@ const path = require("path");
 const { workout } = require("../models/index");
 
 router.post("/api/workouts", ({ body }, res) => {
-    workout.create(body)
+    Workout.create(body)
         .then(dbTransaction => {
             res.json(dbTransaction);
         })
@@ -13,7 +13,7 @@ router.post("/api/workouts", ({ body }, res) => {
 });
 
 router.put("/api/workouts:id", (req, res) => {
-    workout.findByIdAndUpdate(req.params.id, { exercises: req.body })
+    Workout.findByIdAndUpdate(req.params.id, { exercises: req.body })
         .then(dbTransaction => {
             res.json(dbTransaction);
         })
@@ -23,7 +23,7 @@ router.put("/api/workouts:id", (req, res) => {
 });
 
 router.get("/api/workouts", (req, res) => {
-    workout.find({})
+    Workout.find({})
         .then(dbTransaction => {
             res.json(dbTransaction);
         })
