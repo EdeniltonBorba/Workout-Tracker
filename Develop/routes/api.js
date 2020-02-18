@@ -12,3 +12,13 @@ router.post("/api/workouts", ({ body }, res) => {
         });
 });
 
+router.post("/api/workouts:id", (req, res) => {
+    workout.findByIdAndUpdate(req.params.id, { exercises: req.body })
+        .then(dbTransaction => {
+            res.json(dbTransaction);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
+
