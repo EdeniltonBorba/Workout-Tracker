@@ -40,9 +40,17 @@ router.get("/stats", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
 
-router.get("/exercise?", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/stats.html"));
+router.get("/api/workouts/range", (req, res) => {
+    Worker.find({})
+        .sort({ data: -1 })
+        .then(dbTransaction => {
+            res.json(dbTransaction);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
 });
 
+module.exports = router
 
 
